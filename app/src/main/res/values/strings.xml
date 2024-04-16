@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quol</string>
+    <string name="userAuth_firstName">First Name</string>
+    <string name="userAuth_lastName">Last Name</string>
+    <string name="userAuth_email">Email</string>
+    <string name="userAuth_username">Username</string>
+    <string name="userAuth_password">Password</string>
+    <string name="userAuth_birthdate">Birthdate</string>
+    <string name="login">Log in</string>
+    <string name="signUp">Sign Up</string>
+</resources>
