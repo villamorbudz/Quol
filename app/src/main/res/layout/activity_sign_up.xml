@@ -169,7 +169,10 @@
         android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="mm/dd/yy"
-        android:inputType="date"
+        android:inputType="none"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp_firstName" />
 

@@ -5,22 +5,19 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.TextView;
+
 import java.util.Calendar;
 
 public class signUp extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
         Button birthdateBtn = findViewById(R.id.userAuth_birthdateBtn);
-        TextView loginRedirect = findViewById(R.id.loginRedirect);
-
         birthdateBtn.setOnClickListener(view -> openDatePicker());
-
+        TextView loginRedirect = findViewById(R.id.loginRedirect);
         loginRedirect.setOnClickListener(view -> {
             Intent redirect = new Intent(signUp.this, login.class);
             startActivity(redirect);
@@ -38,8 +35,11 @@ public class signUp extends AppCompatActivity {
 
         DatePickerDialog dialog = new DatePickerDialog(this,
                 (datePicker, selectedYear, selectedMonth, selectedDay) ->
-                        birthdateText.setText(month+1 + "/" + day + "/" + year),
+                        birthdateText.setText((selectedMonth+1) + "/" + selectedDay + "/" + selectedYear),
                 year, month, day);
+
+        dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
         dialog.show();
     }
 }
