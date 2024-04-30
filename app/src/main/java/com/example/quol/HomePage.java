@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -13,228 +14,142 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomePage extends AppCompatActivity {
 
     private TextView fromDateTextView;
     private TextView toDateTextView;
     private TextView mlTextView;
-    private ArrayList<Long> selectedDates = new ArrayList<>();
-    private long selectedFromDate = -1; // Initialize to a default value that indicates no date selected yet
-    private long selectedToDate = -1;   // Initialize to a default value that indicates no date selected yet
-
+    CalendarView appCalendar;
+    // Starts at day 1 of week 1 based on layout
+    ArrayList<Button> baseButtons;
+    // Starts at day 1 of month
+    ArrayList<Button> dayButtons;
+    int CurrMonth;
+    int CurrYear;
+    int CurrDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        CalendarView appCalendar = findViewById(R.id.appCalendar);
-
         // Set the maximum selectable date to today
-        long maxDate = Calendar.getInstance().getTimeInMillis();
-        appCalendar.setMaxDate(maxDate);
-
-        mlTextView = findViewById(R.id.mlText);
-        fromDateTextView = findViewById(R.id.fromDate);
-        toDateTextView = findViewById(R.id.toDate);
         Button saveBtn = findViewById(R.id.saveBtn);
-        saveBtn.setOnClickListener(view -> saveSelectedDates(appCalendar));
 
-        appCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        baseButtons = new ArrayList<>();
+        dayButtons = new ArrayList<>();
+
+
+        baseButtons.add((Button) findViewById(R.id.D1));
+        baseButtons.add((Button) findViewById(R.id.D2));
+        baseButtons.add((Button) findViewById(R.id.D3));
+        baseButtons.add((Button) findViewById(R.id.D4));
+        baseButtons.add((Button) findViewById(R.id.D5));
+        baseButtons.add((Button) findViewById(R.id.D6));
+        baseButtons.add((Button) findViewById(R.id.D7));
+        baseButtons.add((Button) findViewById(R.id.D8));
+        baseButtons.add((Button) findViewById(R.id.D9));
+        baseButtons.add((Button) findViewById(R.id.D10));
+        baseButtons.add((Button) findViewById(R.id.D11));
+        baseButtons.add((Button) findViewById(R.id.D12));
+        baseButtons.add((Button) findViewById(R.id.D13));
+        baseButtons.add((Button) findViewById(R.id.D14));
+        baseButtons.add((Button) findViewById(R.id.D15));
+        baseButtons.add((Button) findViewById(R.id.D16));
+        baseButtons.add((Button) findViewById(R.id.D17));
+        baseButtons.add((Button) findViewById(R.id.D18));
+        baseButtons.add((Button) findViewById(R.id.D19));
+        baseButtons.add((Button) findViewById(R.id.D20));
+        baseButtons.add((Button) findViewById(R.id.D21));
+        baseButtons.add((Button) findViewById(R.id.D22));
+        baseButtons.add((Button) findViewById(R.id.D23));
+        baseButtons.add((Button) findViewById(R.id.D24));
+        baseButtons.add((Button) findViewById(R.id.D25));
+        baseButtons.add((Button) findViewById(R.id.D26));
+        baseButtons.add((Button) findViewById(R.id.D27));
+        baseButtons.add((Button) findViewById(R.id.D28));
+        baseButtons.add((Button) findViewById(R.id.D29));
+        baseButtons.add((Button) findViewById(R.id.D30));
+        baseButtons.add((Button) findViewById(R.id.D31));
+        baseButtons.add((Button) findViewById(R.id.D32));
+        baseButtons.add((Button) findViewById(R.id.D33));
+        baseButtons.add((Button) findViewById(R.id.D34));
+        baseButtons.add((Button) findViewById(R.id.D35));
+        baseButtons.add((Button) findViewById(R.id.D36));
+        baseButtons.add((Button) findViewById(R.id.D37));
+        baseButtons.add((Button) findViewById(R.id.D38));
+        baseButtons.add((Button) findViewById(R.id.D39));
+        baseButtons.add((Button) findViewById(R.id.D40));
+        baseButtons.add((Button) findViewById(R.id.D41));
+        baseButtons.add((Button) findViewById(R.id.D42));
+
+        Calendar cd = Calendar.getInstance();
+        CurrYear = cd.get(Calendar.YEAR);
+        CurrMonth = cd.get(Calendar.MONTH);
+        CurrDay = cd.get(Calendar.DATE);
+        moveMonth(CurrYear,CurrMonth);
+
+        Button nextMonth = (Button)findViewById(R.id.NextMonthBtn);
+        Button prevMonth = (Button)findViewById(R.id.PrevMonthBtn);
+
+        nextMonth.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                long selectedDate = getDateInMillis(year, month, dayOfMonth);
-                // Check if the selected date is already present in selectedDates
-                if (selectedDates.contains(selectedDate)) {
-                    // If yes, remove it from the list and update the UI
-                    selectedDates.remove(selectedDate);
-                    highlightSelectedDates(appCalendar);
-                    return;
-                }
-
-                if (selectedFromDate == -1) {
-                    selectedFromDate = selectedDate; // Store the selected fromDate
-                    fromDateTextView.setText((month + 1) + "/" + dayOfMonth + "/" + year);
-                } else if (selectedToDate == -1) {
-                    // Check if selected toDate is earlier than selected fromDate
-                    if (selectedDate < selectedFromDate) {
-                        Toast.makeText(HomePage.this, "To date cannot be earlier than From date", Toast.LENGTH_SHORT).show();
-                        // Clear all inputs and start listening for the fromDate again
-                        selectedFromDate = -1;
-                        selectedToDate = -1;
-                        fromDateTextView.setText("");
-                        toDateTextView.setText("");
-                        return; // Exit the method
-                    }
-                    selectedToDate = selectedDate; // Store the selected toDate
-                    toDateTextView.setText((month + 1) + "/" + dayOfMonth + "/" + year);
-                } else {
-                    // Check if fromDate is later than toDate
-                    if (selectedFromDate > selectedToDate) {
-                        // Clear both fromDate and toDate
-                        selectedFromDate = -1;
-                        selectedToDate = -1;
-                        fromDateTextView.setText("");
-                        toDateTextView.setText("");
-                        selectedDates.clear(); // Clear selected dates
-                        return; // Exit the method without further updating the text views or selected dates
-                    }
-
-                    // Check for overlapping dates
-                    boolean overlap = false;
-                    for (long date : selectedDates) {
-                        if ((date >= selectedFromDate && date <= selectedToDate) || (selectedFromDate >= date && selectedFromDate <= date)) {
-                            overlap = true;
-                            break;
-                        }
-                    }
-
-                    if (overlap) {
-                        // Handle overlap
-                        Toast.makeText(HomePage.this, "Selected dates overlap with existing range", Toast.LENGTH_SHORT).show();
-                        selectedFromDate = -1;
-                        selectedToDate = -1;
-                        fromDateTextView.setText("");
-                        toDateTextView.setText("");
-                        selectedDates.clear(); // Clear selected dates
-                    } else {
-                        // No overlap, proceed as usual
-                        selectedDates.clear();
-                        selectedDates.addAll(getDatesBetween(selectedFromDate, selectedToDate));
-                        highlightSelectedDates(appCalendar);
-                        selectedFromDate = -1;
-                        selectedToDate = -1;
-                        fromDateTextView.setText("");
-                        toDateTextView.setText("");
-                    }
-                }
+            public void onClick(View v) {
+                setMonth(+1);
             }
         });
-    }
 
-    private long getDateInMillis(int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, dayOfMonth);
-        return calendar.getTimeInMillis();
-    }
-
-    private ArrayList<Long> getDatesBetween(long startDate, long endDate) {
-        ArrayList<Long> dates = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(startDate);
-        while (calendar.getTimeInMillis() <= endDate) {
-            dates.add(calendar.getTimeInMillis());
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-        return dates;
-    }
-
-    private void highlightSelectedDates(CalendarView calendarView) {
-        long minDate = calendarView.getDate();
-        long maxDate = calendarView.getDate();
-        for (long date : selectedDates) {
-            if (date < minDate) minDate = date;
-            if (date > maxDate) maxDate = date;
-        }
-        calendarView.setDate(minDate, true, false);
-        calendarView.setDate(maxDate, true, false);
-        calendarView.invalidate();
-    }
-
-
-    private long getDateInMillisFromDateText(String dateText) {
-        String[] parts = dateText.split("/");
-        int month = Integer.parseInt(parts[0]) - 1; // Subtract 1 because Calendar months are zero-based
-        int dayOfMonth = Integer.parseInt(parts[1]);
-        int year = Integer.parseInt(parts[2]);
-        return getDateInMillis(year, month, dayOfMonth);
-    }
-
-    private void displaySelectedDates() {
-        if (selectedDates.isEmpty()) {
-            mlTextView.setText("");
-            return;
-        }
-
-        // Get the start and end dates
-        long startDate = selectedDates.get(0);
-        long endDate = selectedDates.get(selectedDates.size() - 1);
-
-        // Format the dates
-        String formattedStartDate = getFormattedDate(startDate);
-        String formattedEndDate = getFormattedDate(endDate);
-
-        // If mlTextView already has text, append a newline before adding the new dates
-        String currentText = mlTextView.getText().toString();
-        if (!currentText.isEmpty()) {
-            currentText += "\n";
-        }
-
-        // Append the formatted start and end dates
-        String datesText = formattedStartDate + " - " + formattedEndDate;
-        mlTextView.setText(currentText + datesText);
-    }
-
-
-
-    private void appendDateToTextView(long dateInMillis) {
-        String formattedDate = getFormattedDate(dateInMillis);
-        String currentText = mlTextView.getText().toString();
-        if (!currentText.isEmpty()) {
-            currentText += "\n"; // Add newline if text is not empty
-        }
-        currentText += formattedDate;
-        mlTextView.setText(currentText);
-    }
-
-    private void saveSelectedDates(CalendarView calendarView) {
-        String fromDateText = fromDateTextView.getText().toString();
-        String toDateText = toDateTextView.getText().toString();
-
-        if (!fromDateText.isEmpty() && !toDateText.isEmpty()) {
-            long fromDate = getDateInMillisFromDateText(fromDateText);
-            long toDate = getDateInMillisFromDateText(toDateText);
-
-            if (fromDate <= toDate) {
-                boolean hasOverlap = false;
-                for (long date : selectedDates) {
-                    if (fromDate <= date && toDate >= date) {
-                        hasOverlap = true;
-                        break;
-                    }
-                }
-                if (!hasOverlap) {
-                    selectedDates.add(fromDate);
-                    selectedDates.add(toDate);
-                    displaySelectedDates(); // Update displayed dates
-                } else {
-                    Toast.makeText(this, "Selected dates overlap with existing selection", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(this, "To date cannot be earlier than from date", Toast.LENGTH_SHORT).show();
+        prevMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMonth(-1);
             }
+        });
+
+    }
+
+    private void moveMonth(int Year,int Month){
+        TextView MYText = findViewById(R.id.MYtext);
+        String[] MonthsString = {
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        };
+        MYText.setText(MonthsString[Month] + ", " + Year );
+
+        Calendar cal = new GregorianCalendar(Year,Month,1);
+        int startdayinWeek = cal.get(Calendar.DAY_OF_WEEK);
+        int daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        for(Button btn: baseButtons){
+            btn.setText("");
         }
-
-        // Clear all inputs and reset selectedFromDate
-        selectedFromDate = -1;
-        selectedToDate = -1;
-        fromDateTextView.setText("");
-        toDateTextView.setText("");
+        dayButtons = new ArrayList<>();
+        for(int x=0;x<daysInMonth;x++){
+            dayButtons.add(baseButtons.get(startdayinWeek+x-1));
+            System.out.println(x);
+        }
+        for(int x=0;x<daysInMonth;x++){
+            Button btn = dayButtons.get(x);
+            btn.setText(Integer.toString(x+1));
+        }
+        System.out.println("Done");
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        displaySelectedDates(); // Update displayed dates when activity resumes
+    private void setMonth(int Month){
+        CurrMonth = Month + CurrMonth;
+        if(CurrMonth == 0 && Month == -1){ //lazy fix
+           CurrMonth = 11;
+           CurrYear-=1;
+        }
+        if(CurrMonth/12 > 0){
+            CurrYear+= Month;
+            CurrMonth%=2;
+        }
+        moveMonth(CurrYear,CurrMonth);
     }
 
-    private String getFormattedDate(long dateInMillis) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(dateInMillis);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
-        return dateFormat.format(calendar.getTime());
-    }
 }
