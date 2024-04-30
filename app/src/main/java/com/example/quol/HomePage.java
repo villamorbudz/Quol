@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -28,7 +29,9 @@ public class HomePage extends AppCompatActivity {
     ArrayList<Button> baseButtons;
     // Starts at day 1 of month
     ArrayList<Button> dayButtons;
-
+    int CurrMonth;
+    int CurrYear;
+    int CurrDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,21 +80,54 @@ public class HomePage extends AppCompatActivity {
         baseButtons.add((Button) findViewById(R.id.D33));
         baseButtons.add((Button) findViewById(R.id.D34));
         baseButtons.add((Button) findViewById(R.id.D35));
+        baseButtons.add((Button) findViewById(R.id.D36));
+        baseButtons.add((Button) findViewById(R.id.D37));
+        baseButtons.add((Button) findViewById(R.id.D38));
+        baseButtons.add((Button) findViewById(R.id.D39));
+        baseButtons.add((Button) findViewById(R.id.D40));
+        baseButtons.add((Button) findViewById(R.id.D41));
+        baseButtons.add((Button) findViewById(R.id.D42));
 
         Calendar cd = Calendar.getInstance();
-        int Year = cd.get(Calendar.YEAR);
-        int Month = cd.get(Calendar.MONTH);
-        int Date = cd.get(Calendar.DATE);
-        moveMonth(Year,Month);
+        CurrYear = cd.get(Calendar.YEAR);
+        CurrMonth = cd.get(Calendar.MONTH);
+        CurrDay = cd.get(Calendar.DATE);
+        moveMonth(CurrYear,CurrMonth);
+
+        Button nextMonth = (Button)findViewById(R.id.NextMonthBtn);
+        Button prevMonth = (Button)findViewById(R.id.PrevMonthBtn);
+
+        nextMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMonth(CurrMonth+1);
+            }
+        });
+
+        prevMonth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMonth(CurrMonth-1);
+            }
+        });
+
     }
 
     private void moveMonth(int Year,int Month){
+        TextView MYText = findViewById(R.id.MYtext);
+        String[] MonthsString = {
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        };
+        MYText.setText(MonthsString[Month] + ", " + Year );
+
         Calendar cal = new GregorianCalendar(Year,Month,1);
         int startdayinWeek = cal.get(Calendar.DAY_OF_WEEK);
         int daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for(Button btn: baseButtons){
             btn.setText("");
         }
+        dayButtons = new ArrayList<>();
         for(int x=0;x<daysInMonth;x++){
             dayButtons.add(baseButtons.get(startdayinWeek+x-1));
             System.out.println(x);
@@ -100,6 +136,16 @@ public class HomePage extends AppCompatActivity {
             Button btn = dayButtons.get(x);
             btn.setText(Integer.toString(x+1));
         }
+        System.out.println("Done");
+    }
+
+    private void setMonth(int Month){
+        CurrMonth = Month;
+        if(CurrMonth/12 > 0){
+            CurrYear+= CurrMonth/12;
+            CurrMonth%=2;
+        }
+        moveMonth(CurrYear,CurrMonth);
     }
 
 }
