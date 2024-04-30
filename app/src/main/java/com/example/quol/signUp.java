@@ -33,6 +33,7 @@ public class signUp extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
         DatePickerDialog dialog = new DatePickerDialog(this,
                 (datePicker, selectedYear, selectedMonth, selectedDay) ->
                         birthdateText.setText((selectedMonth+1) + "/" + selectedDay + "/" + selectedYear),
