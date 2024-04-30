@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class HomePage extends AppCompatActivity {
@@ -32,6 +35,12 @@ public class HomePage extends AppCompatActivity {
     int CurrMonth;
     int CurrYear;
     int CurrDay;
+    int DayOffset;
+    public final String[] Statuses = {"None","Light","Heavy"};
+
+    // Year -> Month -> Day -> Status
+    HashMap<Integer,HashMap<Integer,HashMap<Integer,Integer>>> YearHash;
+    HashMap<Integer,Integer> FinalDayHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class HomePage extends AppCompatActivity {
 
         baseButtons = new ArrayList<>();
         dayButtons = new ArrayList<>();
+
 
 
         baseButtons.add((Button) findViewById(R.id.D1));
@@ -88,10 +98,21 @@ public class HomePage extends AppCompatActivity {
         baseButtons.add((Button) findViewById(R.id.D41));
         baseButtons.add((Button) findViewById(R.id.D42));
 
+        for(int x = 0;x<baseButtons.size();x++){
+            int finalX = x;
+            baseButtons.get(x).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setSelectedDate(finalX);
+                }
+            });
+        }
+
         Calendar cd = Calendar.getInstance();
         CurrYear = cd.get(Calendar.YEAR);
         CurrMonth = cd.get(Calendar.MONTH);
         CurrDay = cd.get(Calendar.DATE);
+        YearHash = new HashMap<>();
         moveMonth(CurrYear,CurrMonth);
 
         Button nextMonth = (Button)findViewById(R.id.NextMonthBtn);
@@ -111,6 +132,20 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        Button Heavybtn = (Button) findViewById(R.id.saveBtn);
+        Button Lightbtn = (Button) findViewById(R.id.LightFlowbtn);
+        Heavybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setStatus(CurrYear,CurrMonth,CurrDay,2);
+            }
+        });
+        Lightbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setStatus(CurrYear,CurrMonth,CurrDay,1);
+            }
+        });
     }
 
     private void moveMonth(int Year,int Month){
@@ -120,21 +155,39 @@ public class HomePage extends AppCompatActivity {
                 "July", "August", "September", "October", "November", "December"
         };
         MYText.setText(MonthsString[Month] + ", " + Year );
+        FinalDayHash = getStatus(Year,Month);
 
         Calendar cal = new GregorianCalendar(Year,Month,1);
         int startdayinWeek = cal.get(Calendar.DAY_OF_WEEK);
+        DayOffset = startdayinWeek;
         int daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for(Button btn: baseButtons){
             btn.setText("");
+            btn.setVisibility(View.INVISIBLE);
+            btn.setEnabled(false);
         }
         dayButtons = new ArrayList<>();
         for(int x=0;x<daysInMonth;x++){
             dayButtons.add(baseButtons.get(startdayinWeek+x-1));
             System.out.println(x);
         }
+        Color[] Pallete = new Color[]{Color.valueOf(Color.RED), Color.valueOf(Color.BLUE)};
         for(int x=0;x<daysInMonth;x++){
             Button btn = dayButtons.get(x);
             btn.setText(Integer.toString(x+1));
+
+            btn.setVisibility(View.VISIBLE);
+            btn.setEnabled(true);
+            // CHANGE PALETE HERE INPLACE
+            /**
+             *
+             *
+             *
+             *
+             *
+             *
+             *
+             * **/
         }
         System.out.println("Done");
     }
@@ -150,6 +203,37 @@ public class HomePage extends AppCompatActivity {
             CurrMonth%=2;
         }
         moveMonth(CurrYear,CurrMonth);
+    }
+
+    private void setStatus(int Year,int Month,int Day,int Status){
+        FinalDayHash = getStatus(Year,Month);
+        if(FinalDayHash.containsKey(Day)){
+            FinalDayHash.replace(Day,Status);
+        }else{
+            FinalDayHash.put(Day,Status);
+        }
+        setSelectedDate(Day+DayOffset-2);
+        System.out.println("Done");
+    }
+    private HashMap<Integer,Integer> getStatus(int Year,int Month){
+        if(!YearHash.containsKey(Year)){
+            HashMap<Integer,HashMap<Integer,Integer>> Monthhash = new HashMap<>();
+            YearHash.put(Year,Monthhash);
+        }
+        HashMap<Integer,HashMap<Integer,Integer>> MonthHash = YearHash.get(Year);
+        if(!MonthHash.containsKey(Month)){
+            HashMap<Integer,Integer> DayHash = new HashMap<>();
+            MonthHash.put(Month,DayHash);
+        }
+        return MonthHash.get(Month);
+    }
+    private void setSelectedDate(int Date){
+        CurrDay = Date - (DayOffset-2);
+        TextView SelectedText = (TextView) findViewById(R.id.tvDay);
+        TextView DayStatus = (TextView) findViewById(R.id.tvStatus);
+        SelectedText.setText(Integer.toString(CurrDay));
+        int Status = FinalDayHash.getOrDefault(CurrDay,0);
+        DayStatus.setText(Statuses[Status]);
     }
 
 }
