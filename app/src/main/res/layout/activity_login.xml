@@ -11,21 +11,21 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="56dp"
         android:ems="10"
         android:hint="name@domain.com"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeLabel" />
+        app:layout_constraintTop_toBottomOf="@id/loginLabel" />
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="56dp"
         android:ems="10"
         android:hint="Password"
@@ -36,32 +36,29 @@
 
     <Button
         android:id="@+id/signUpBtn"
-        android:layout_width="700px"
-        android:layout_height="200px"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="72dp"
-        android:text="Login"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="56dp"
+        android:text="@string/login"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/keepLoggedInCb" />
 
     <TextView
-        android:id="@+id/welcomeLabel"
+        android:id="@+id/loginLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="76dp"
-        android:text="Login to Quol"
-        android:textSize="32sp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/login_message"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/login_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/emailLabel"
@@ -92,10 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="175dp"
-        android:text="Forgot Password? Click Here"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="Forgot Password?"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
@@ -104,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="109dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="125dp"
         android:layout_marginEnd="110dp"
         android:text="Don't have an account?"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,21 +111,47 @@
         android:id="@+id/keepLoggedInCb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
         android:text="Keep me logged in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgotPasswordLabel" />
 
     <TextView
         android:id="@+id/signUpRedirect"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="110dp"
         android:gravity="center"
         android:text="@string/signUp"
-        android:textColor="@color/blue"
+        android:textColor="#3A2D28"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/signUpRedirectLabel"
         app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="192dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="110dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/quol_textlogo_transparent" />
+
+    <TextView
+        android:id="@+id/signUp_forgotPasswordRedirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Click Here"
+        android:textColor="#3A2D28"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/forgotPasswordLabel"
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

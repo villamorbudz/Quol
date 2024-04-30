@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Quol" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Quol" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/COLOR_PRIMARY</item>
     </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/COLOR_SECONDARY</item>
 
+    </style>
     <style name="Theme.Quol" parent="Base.Theme.Quol" />
 </resources>
