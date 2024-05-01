@@ -1,26 +1,18 @@
 package com.example.quol;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
 
 public class HomePage extends AppCompatActivity {
 
@@ -48,7 +40,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         // Set the maximum selectable date to today
-        Button saveBtn = findViewById(R.id.saveBtn);
+        Button HeavyFlowBtn = findViewById(R.id.HeavyFlowBtn);
 
         baseButtons = new ArrayList<>();
         dayButtons = new ArrayList<>();
@@ -132,8 +124,8 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        Button Heavybtn = (Button) findViewById(R.id.saveBtn);
-        Button Lightbtn = (Button) findViewById(R.id.LightFlowbtn);
+        Button Heavybtn = (Button) findViewById(R.id.HeavyFlowBtn);
+        Button Lightbtn = (Button) findViewById(R.id.LightFlowBtn);
         Heavybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +146,7 @@ public class HomePage extends AppCompatActivity {
                 "January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"
         };
-        MYText.setText(MonthsString[Month] + ", " + Year );
+        MYText.setText(MonthsString[Month] + " " + Year );
         FinalDayHash = getStatus(Year,Month);
 
         Calendar cal = new GregorianCalendar(Year,Month,1);
@@ -229,11 +221,11 @@ public class HomePage extends AppCompatActivity {
     }
     private void setSelectedDate(int Date){
         CurrDay = Date - (DayOffset-2);
-        TextView SelectedText = (TextView) findViewById(R.id.tvDay);
-        TextView DayStatus = (TextView) findViewById(R.id.tvStatus);
-        SelectedText.setText(Integer.toString(CurrDay));
+        TextView selectedDay = (TextView) findViewById(R.id.selectedDayTv);
+        TextView periodIntensity = (TextView) findViewById(R.id.periodIntensityTv);
+        selectedDay.setText(Integer.toString(CurrDay));
         int Status = FinalDayHash.getOrDefault(CurrDay,0);
-        DayStatus.setText(Statuses[Status]);
+        periodIntensity.setText(Statuses[Status]);
     }
 
 }

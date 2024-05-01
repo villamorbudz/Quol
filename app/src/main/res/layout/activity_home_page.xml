@@ -8,70 +8,89 @@
     tools:context=".HomePage">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
+
+            <ImageView
+                android:id="@+id/history_appLogo"
+                android:layout_width="125dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="131dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/quol_textlogo_transparent" />
 
             <TextView
-                android:id="@+id/titleText"
-                android:layout_width="match_parent"
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="0Quol"
-                android:textAlignment="center"
-                android:textSize="32sp"
+                android:layout_marginStart="159dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="160dp"
+                android:text="History"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/saveBtn"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="104dp"
-                android:text="HeavyFlow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="409dp"
                 android:layout_height="387dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="1dp"
+                android:layout_marginTop="50dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/saveBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleText"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/MYtext"
+                    <Button
+                        android:id="@+id/PrevMonthBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        app:icon="?attr/actionModeCloseDrawable" />
+
+                    <TextView
+                        android:id="@+id/MYtext"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Month/Year"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
+                    <Button
+                        android:id="@+id/NextMonthBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:rotation="180"
+                        app:icon="?attr/actionModeCloseDrawable" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -142,56 +161,126 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -205,56 +294,126 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -268,56 +427,126 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -331,56 +560,126 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -394,56 +693,126 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D35"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -457,125 +826,218 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="01"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D37"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="02"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D38"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="03"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D39"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="04"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D40"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="05"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D41"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="06"
-                        android:textSize="8sp" />
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
 
                     <Button
                         android:id="@+id/D42"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:padding="0dp"
+                        android:paddingHorizontal="0dp"
+                        android:paddingVertical="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingEnd="0dp"
+                        android:paddingRight="0dp"
+                        android:paddingBottom="0dp"
                         android:text="07"
-                        android:textSize="8sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/PrevMonthBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Prev" />
-
-                    <Button
-                        android:id="@+id/NextMonthBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Next" />
-
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
                 </LinearLayout>
 
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="125dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="131dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/quol_textlogo_transparent" />
+
             <Button
-                android:id="@+id/LightFlowbtn"
+                android:id="@+id/HeavyFlowBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="LightFlow"
-                app:layout_constraintBottom_toTopOf="@+id/saveBtn"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="40dp"
+                android:text="Heavy Flow"
+                app:layout_constraintStart_toEndOf="@+id/LightFlowBtn"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <Button
+                android:id="@+id/LightFlowBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginTop="40dp"
+                android:text="Light Flow"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
             <TextView
-                android:id="@+id/tvDay"
-                android:layout_width="96dp"
-                android:layout_height="27dp"
+                android:id="@+id/selectedDayTv"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginBottom="13dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toEndOf="@+id/tvStatus"
-                tools:layout_editor_absoluteY="467dp" />
+                app:layout_constraintBottom_toTopOf="@+id/LightFlowBtn"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="82dp"
-                android:layout_height="29dp"
+                android:id="@+id/periodIntensityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="27dp"
+                android:layout_marginBottom="16dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/LightFlowbtn"
-                app:layout_constraintHorizontal_bias="0.162"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="465dp" />
+                app:layout_constraintBottom_toTopOf="@+id/HeavyFlowBtn"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/header"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#673AB7"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent" >
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/overviewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Overview" />
+
+            <Button
+                android:id="@+id/trackBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Track" />
+
+            <Button
+                android:id="@+id/historyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="History" />
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
