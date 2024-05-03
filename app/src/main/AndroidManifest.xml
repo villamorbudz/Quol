@@ -16,7 +16,7 @@
             android:name=".TrackPeriod"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name=".PeriodHistory"
             android:exported="false" />
         <activity
             android:name=".signUp"

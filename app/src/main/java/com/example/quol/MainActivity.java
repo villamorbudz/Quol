@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.homebtn).setOnClickListener(view -> {
-            Intent openActivity = new Intent(MainActivity.this, HomePage.class);
+            Intent openActivity = new Intent(MainActivity.this, PeriodHistory.class);
             startActivity(openActivity);
         });
     }
