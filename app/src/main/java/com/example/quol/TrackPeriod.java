@@ -1,50 +1,39 @@
 package com.example.quol;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
+
 public class TrackPeriod extends AppCompatActivity {
     HashMap<Integer, HashMap<Integer, HashMap<Integer, Integer>>> YearHash;
     CalendarView periodHistoryCalendar;
     TextView selectedDateText;
-    RadioGroup bleedingStatus;
 
-    int CurrMonth;
-    int CurrYear;
-    int CurrDay;
+    int currentMonth;
+    int currentYear;
+    int currentDay;
+    Button noBleedingBtn;
+    Button lightBleedingBtn;
+    Button mediumBleedingBtn;
+    Button heavyBleedingBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_period);
-
-        Calendar cd = Calendar.getInstance();
-        CurrYear = cd.get(Calendar.YEAR);
-        CurrMonth = cd.get(Calendar.MONTH);
-        CurrDay = cd.get(Calendar.DATE);
-        YearHash = new HashMap<>();
-
-        final int noBleedingRbId = R.id.noBleedingRb;
-        final int lightBleedingRbId = R.id.lightBleedingRb;
-        final int mediumBleedingRbId = R.id.mediumBleedingRb;
-        final int heavyBleedingRbId = R.id.heavyBleedingRb;
-
-        periodHistoryCalendar = findViewById(R.id.periodHistoryCalendar);
-        selectedDateText = findViewById(R.id.selectedDateTv);
-        bleedingStatus = findViewById(R.id.bleedingRateRb);
-
-        bleedingStatus.check(R.id.noBleedingRb);
 
         findViewById(R.id.historyBtn).setOnClickListener(view -> {
             Intent openActivity = new Intent(TrackPeriod.this, PeriodHistory.class);
@@ -52,36 +41,60 @@ public class TrackPeriod extends AppCompatActivity {
             startActivity(openActivity);
         });
 
+        findViewById(R.id.overviewBtn).setOnClickListener(view -> {
+            Intent openActivity = new Intent(TrackPeriod.this, Overview.class);
+            finish();
+            startActivity(openActivity);
+        });
+
+        Calendar cd = Calendar.getInstance();
+        currentYear = cd.get(Calendar.YEAR);
+        currentMonth = cd.get(Calendar.MONTH);
+        currentDay = cd.get(Calendar.DATE);
+        YearHash = new HashMap<>();
+
+        periodHistoryCalendar = findViewById(R.id.periodHistoryCalendar);
+        selectedDateText = findViewById(R.id.selectedDateTv);
+        noBleedingBtn = findViewById(R.id.noBleedingBtn);
+        lightBleedingBtn = findViewById(R.id.lightBleedingBtn);
+        mediumBleedingBtn = findViewById(R.id.mediumBleedingBtn);
+        heavyBleedingBtn = findViewById(R.id.heavyBleedingBtn);
+
+        noBleedingBtn.setText("");
+        lightBleedingBtn.setText("");
+        mediumBleedingBtn.setText("");
+        heavyBleedingBtn.setText("");
+
+        noBleedingBtn.setOnClickListener(v -> {
+            setStatus(currentYear, currentMonth, currentDay, 0);
+        });
+        lightBleedingBtn.setOnClickListener(v -> {
+            setStatus(currentYear, currentMonth, currentDay, 1);
+        });
+        mediumBleedingBtn.setOnClickListener(v -> {
+            setStatus(currentYear, currentMonth, currentDay, 2);
+        });
+        heavyBleedingBtn.setOnClickListener(v -> {
+            setStatus(currentYear, currentMonth, currentDay, 3);
+        });
+
         setCurrentDay();
+        setButtonStatus(currentYear, currentMonth, currentDay);
+
         periodHistoryCalendar.setMaxDate(System.currentTimeMillis());
         periodHistoryCalendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            CurrYear = year;
-            CurrMonth = month;
-            CurrDay = dayOfMonth;
+            currentYear = year;
+            currentMonth = month;
+            currentDay = dayOfMonth;
+
             Calendar selectedDate = Calendar.getInstance();
             selectedDate.set(year, month, dayOfMonth);
             SimpleDateFormat sdf = new SimpleDateFormat("MMM dd", Locale.US);
             String formattedDate = sdf.format(selectedDate.getTime());
+
             selectedDateText.setText(formattedDate);
-            setSelectedStatus(year, month, dayOfMonth);
+            setButtonStatus(currentYear, currentMonth, currentDay);
         });
-
-        bleedingStatus.setOnCheckedChangeListener((group, checkedId) -> {
-            int status = 0;
-            if (checkedId == noBleedingRbId) {
-                status = 0;
-            } else if (checkedId == lightBleedingRbId) {
-                status = 1;
-            } else if (checkedId == mediumBleedingRbId) {
-                status = 2;
-            } else if (checkedId == heavyBleedingRbId) {
-                status = 3;
-            }
-
-            setStatus(CurrYear, CurrMonth, CurrDay, status);
-            Toast.makeText(TrackPeriod.this, "Period Symptom Recorded", Toast.LENGTH_SHORT).show();
-        });
-
     }
 
     private void setStatus(int year, int month, int day, int status) {
@@ -98,66 +111,47 @@ public class TrackPeriod extends AppCompatActivity {
         }
 
         dayHash.put(day, status);
+        setButtonStatus(year, month, day);
     }
 
-    private void setSelectedStatus(int year, int month, int day) {
-        HashMap<Integer, HashMap<Integer, Integer>> monthHash = PeriodStatusManager.getYearHash().get(year);
+    private void setButtonStatus(int year, int month, int day) {
+        noBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+        lightBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+        mediumBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+        heavyBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
 
+        HashMap<Integer, HashMap<Integer, Integer>> monthHash = PeriodStatusManager.getYearHash().get(year);
         if (monthHash != null) {
             HashMap<Integer, Integer> dayHash = monthHash.get(month);
             if (dayHash != null) {
                 Integer status = dayHash.get(day);
                 if (status != null) {
-                    bleedingStatus.setOnCheckedChangeListener(null); // Remove listener temporarily
-                    bleedingStatus.check(getBleedingStatusRadioButtonId(status));
-                    bleedingStatus.setOnCheckedChangeListener((group, checkedId) -> {
-                        int newStatus = 0;
-                        if (checkedId == R.id.noBleedingRb) {
-                            newStatus = 0;
-                        } else if (checkedId == R.id.lightBleedingRb) {
-                            newStatus = 1;
-                        } else if (checkedId == R.id.mediumBleedingRb) {
-                            newStatus = 2;
-                        } else if (checkedId == R.id.heavyBleedingRb) {
-                            newStatus = 3;
-                        }
-                        setStatus(year, month, day, newStatus);
-                        Toast.makeText(TrackPeriod.this, "Period Symptom Recorded", Toast.LENGTH_SHORT).show();
-                    });
+                    switch (status) {
+                        case 1:
+                            lightBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBAD8D")));
+                            break;
+                        case 2:
+                            mediumBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBAD8D")));
+                            break;
+                        case 3:
+                            heavyBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBAD8D")));
+                            break;
+                        default:
+                            // No bleeding case
+                            noBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBAD8D")));
+                            break;
+                    }
                 } else {
-                    bleedingStatus.setOnCheckedChangeListener(null); // Remove listener temporarily
-                    bleedingStatus.check(R.id.noBleedingRb);
-                    bleedingStatus.setOnCheckedChangeListener((group, checkedId) -> {
-                        int newStatus = 0;
-                        if (checkedId == R.id.noBleedingRb) {
-                            newStatus = 0;
-                        } else if (checkedId == R.id.lightBleedingRb) {
-                            newStatus = 1;
-                        } else if (checkedId == R.id.mediumBleedingRb) {
-                            newStatus = 2;
-                        } else if (checkedId == R.id.heavyBleedingRb) {
-                            newStatus = 3;
-                        }
-                        setStatus(year, month, day, newStatus);
-                        Toast.makeText(TrackPeriod.this, "Period Symptom Recorded", Toast.LENGTH_SHORT).show();
-                    });
+                    // If status is null, set it to 0 automatically for said day
+                    setStatus(year, month, day, 0);
                 }
             }
-        }
-    }
-
-    private int getBleedingStatusRadioButtonId(int status) {
-        switch (status) {
-            case 0:
-                return R.id.noBleedingRb;
-            case 1:
-                return R.id.lightBleedingRb;
-            case 2:
-                return R.id.mediumBleedingRb;
-            case 3:
-                return R.id.heavyBleedingRb;
-            default:
-                return R.id.noBleedingRb;
+        } else {
+            noBleedingBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CBAD8D")));
+            // If monthHash is null, create a new one and set the status to 0 for said day
+            monthHash = new HashMap<>();
+            PeriodStatusManager.getYearHash().put(year, monthHash);
+            setStatus(year, month, day, 0);
         }
     }
 

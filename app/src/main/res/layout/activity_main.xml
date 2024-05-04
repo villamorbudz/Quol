@@ -27,7 +27,7 @@
         android:layout_height="75dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="100dp"
-        android:text="Start Demo"
+        android:text="START"
         app:cornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userSignUpBtn" />

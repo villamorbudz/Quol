@@ -12,6 +12,8 @@ public class PeriodStatusManager {
     public static void setYearHash(HashMap<Integer, HashMap<Integer, HashMap<Integer, Integer>>> yearHash) {
         YearHash = yearHash;
     }
+
+
 }
 
 

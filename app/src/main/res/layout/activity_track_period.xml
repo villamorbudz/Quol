@@ -50,58 +50,75 @@
         android:text="Bleeding"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintBottom_toTopOf="@+id/bleedingRateBtns"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/bleedingRateBtns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/selectedDateTv">
 
-        <RadioGroup
-            android:id="@+id/bleedingRateRb"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/noBleedingBtn"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:insetLeft="0dp"
+            android:text="N"
+            android:textColor="@color/white"
+            app:iconPadding="0dp"
+            app:strokeColor="@color/COLOR_PRIMARY"
+            app:strokeWidth="3dp" />
 
-            <RadioButton
-                android:id="@+id/noBleedingRb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="None" />
+        <Button
+            android:id="@+id/lightBleedingBtn"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:text="L"
+            android:textColor="@color/white"
+            app:iconPadding="0dp"
+            app:strokeColor="@color/COLOR_PRIMARY"
+            app:strokeWidth="3dp" />
 
-            <RadioButton
-                android:id="@+id/lightBleedingRb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Light" />
+        <Button
+            android:id="@+id/mediumBleedingBtn"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:insetLeft="0dp"
+            android:text="M"
+            android:textColor="@color/white"
+            app:iconPadding="0dp"
+            app:strokeColor="@color/COLOR_PRIMARY"
+            app:strokeWidth="3dp" />
 
-            <RadioButton
-                android:id="@+id/mediumBleedingRb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Medium" />
-
-            <RadioButton
-                android:id="@+id/heavyBleedingRb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Heavy" />
-
-        </RadioGroup>
-
+        <Button
+            android:id="@+id/heavyBleedingBtn"
+            android:layout_width="60dp"
+            android:layout_height="90dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
+            android:insetLeft="0dp"
+            android:text="H"
+            android:textColor="@color/white"
+            app:iconPadding="0dp"
+            app:strokeColor="@color/COLOR_PRIMARY"
+            app:strokeWidth="3dp" />
     </LinearLayout>
 
     <TextView
@@ -109,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Track Period"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -155,5 +172,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/COLOR_PRIMARY"
         app:strokeWidth="0dp" />
+
+    <TextView
+        android:id="@+id/lightBleedingLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="5dp"
+        android:text="Medium"
+        app:layout_constraintStart_toEndOf="@+id/lightBleedingLbl2"
+        app:layout_constraintTop_toBottomOf="@+id/bleedingRateBtns" />
+
+    <TextView
+        android:id="@+id/lightBleedingLbl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="5dp"
+        android:text="Light"
+        app:layout_constraintStart_toEndOf="@+id/noBleedingLbl2"
+        app:layout_constraintTop_toBottomOf="@+id/bleedingRateBtns" />
+
+    <TextView
+        android:id="@+id/noBleedingLbl2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="5dp"
+        android:text="None"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bleedingRateBtns" />
+
+    <TextView
+        android:id="@+id/heavyBleedingLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:text="Heavy"
+        app:layout_constraintStart_toEndOf="@+id/lightBleedingLbl"
+        app:layout_constraintTop_toBottomOf="@+id/bleedingRateBtns" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

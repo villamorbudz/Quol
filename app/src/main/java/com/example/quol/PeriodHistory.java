@@ -62,6 +62,12 @@ public class PeriodHistory extends AppCompatActivity {
             finish();
             startActivity(openActivity);
         });
+
+        findViewById(R.id.overviewBtn).setOnClickListener(view -> {
+            Intent openActivity = new Intent(PeriodHistory.this, Overview.class);
+            finish();
+            startActivity(openActivity);
+        });
     }
 
     private void moveMonth(int year, int month) {
@@ -106,11 +112,11 @@ public class PeriodHistory extends AppCompatActivity {
                     btn.setTextColor(Color.WHITE);
                     break;
                 case 2: // Medium
-                    btn.setBackgroundColor(Color.parseColor("#C0FF0000")); // Medium-opacity red
+                    btn.setBackgroundColor(Color.RED); // Medium-opacity red
                     btn.setTextColor(Color.WHITE);
                     break;
                 case 3: // Heavy
-                    btn.setBackgroundColor(Color.RED); // Red
+                    btn.setBackgroundColor(Color.parseColor("#FF8B0000")); // Red
                     btn.setTextColor(Color.WHITE);
                     break;
                 default:
