@@ -86,11 +86,11 @@ public class TrackPeriod extends AppCompatActivity {
 
     private void setStatus(int year, int month, int day, int status) {
         HashMap<Integer, HashMap<Integer, Integer>> monthHash = PeriodStatusManager.getYearHash().get(year);
+
         if (monthHash == null) {
             monthHash = new HashMap<>();
             YearHash.put(year, monthHash);
         }
-
         HashMap<Integer, Integer> dayHash = monthHash.get(month);
         if (dayHash == null) {
             dayHash = new HashMap<>();
@@ -102,6 +102,7 @@ public class TrackPeriod extends AppCompatActivity {
 
     private void setSelectedStatus(int year, int month, int day) {
         HashMap<Integer, HashMap<Integer, Integer>> monthHash = PeriodStatusManager.getYearHash().get(year);
+
         if (monthHash != null) {
             HashMap<Integer, Integer> dayHash = monthHash.get(month);
             if (dayHash != null) {
@@ -124,7 +125,6 @@ public class TrackPeriod extends AppCompatActivity {
                         Toast.makeText(TrackPeriod.this, "Period Symptom Recorded", Toast.LENGTH_SHORT).show();
                     });
                 } else {
-                    // If status is null, set the radio button selection to "None"
                     bleedingStatus.setOnCheckedChangeListener(null); // Remove listener temporarily
                     bleedingStatus.check(R.id.noBleedingRb);
                     bleedingStatus.setOnCheckedChangeListener((group, checkedId) -> {

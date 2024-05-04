@@ -6,166 +6,154 @@
     android:layout_height="match_parent"
     tools:context=".TrackPeriod">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="131dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/quol_textlogo_transparent" />
+
+    <CalendarView
+        android:id="@+id/periodHistoryCalendar"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trackPeriodText" />
+
+    <TextView
+        android:id="@+id/selectedDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="25dp"
+        android:text="Jan 01"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/periodHistoryCalendar" />
+
+    <TextView
+        android:id="@+id/bleedingLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="10dp"
+        android:text="Bleeding"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-41dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectedDateTv">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="159dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="160dp"
-            android:text="Track"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="125dp"
-            android:layout_height="75dp"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="131dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/quol_textlogo_transparent" />
-
-        <CalendarView
-            android:id="@+id/periodHistoryCalendar"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-        <TextView
-            android:id="@+id/selectedDateTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginTop="25dp"
-            android:text="Jan 01"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/periodHistoryCalendar" />
-
-        <TextView
-            android:id="@+id/bleedingLabel2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="10dp"
-            android:text="Bleeding"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <RadioGroup
+            android:id="@+id/bleedingRateRb"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/selectedDateTv">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            <RadioGroup
-                android:id="@+id/bleedingRateRb"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/noBleedingRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="None" />
 
-                <RadioButton
-                    android:id="@+id/noBleedingRb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="None" />
+            <RadioButton
+                android:id="@+id/lightBleedingRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Light" />
 
-                <RadioButton
-                    android:id="@+id/lightBleedingRb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Light" />
+            <RadioButton
+                android:id="@+id/mediumBleedingRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medium" />
 
-                <RadioButton
-                    android:id="@+id/mediumBleedingRb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Medium" />
+            <RadioButton
+                android:id="@+id/heavyBleedingRb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Heavy" />
 
-                <RadioButton
-                    android:id="@+id/heavyBleedingRb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Heavy" />
+        </RadioGroup>
 
-            </RadioGroup>
-        </LinearLayout>
+    </LinearLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="410dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+    <TextView
+        android:id="@+id/trackPeriodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="40dp"
+        android:text="Track Period"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+    <Button
+        android:id="@+id/historyBtn"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:background="#00FFFFFF"
+        android:text="History"
+        android:textColor="@color/gray"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeColor="@color/COLOR_PRIMARY"
+        app:strokeWidth="0dp" />
 
-                <Button
-                    android:id="@+id/overviewBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00FFFFFF"
-                    android:text="Overview"
-                    android:textColor="@color/material_dynamic_neutral30"
-                    app:cornerRadius="0dp"
-                    app:strokeColor="@color/COLOR_PRIMARY"
-                    app:strokeWidth="2dp" />
+    <Button
+        android:id="@+id/trackPeriodBtn"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Track"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/historyBtn"
+        app:layout_constraintStart_toEndOf="@+id/overviewBtn" />
 
-                <Button
-                    android:id="@+id/trackBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Track"
-                    app:cornerRadius="0dp" />
+    <Button
+        android:id="@+id/overviewBtn"
+        android:layout_width="125dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:background="#00FFFFFF"
+        android:text="Overview"
+        android:textColor="@color/gray"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/COLOR_PRIMARY"
+        app:strokeWidth="0dp" />
 
-                <Button
-                    android:id="@+id/historyBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00FFFFFF"
-                    android:text="History"
-                    android:textColor="@color/material_dynamic_neutral30"
-                    app:cornerRadius="0dp"
-                    app:strokeColor="@color/COLOR_PRIMARY"
-                    app:strokeWidth="2dp" />
-            </LinearLayout>
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
